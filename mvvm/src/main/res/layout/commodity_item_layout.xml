@@ -9,6 +9,8 @@
         <variable
             name="orderDetailHandler"
             type="com.base.mvvm.feature.main.order.detail.OrderDetailHandler"/>
+        <import type="android.view.View"/>
+
     </data>
 
     <LinearLayout
@@ -64,7 +66,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@{orderDetailHandler.getCommodityStandard()}"
+                    android:visibility="@{commodityBean.standard==null?View.INVISIBLE : View.VISIBLE}"
+                    android:text="@{commodityBean.standard}"
                     android:textColor="@color/grayText"
                     android:textSize="@dimen/textsize_sixteen" />
             </LinearLayout>

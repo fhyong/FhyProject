@@ -84,7 +84,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:text='@{@string/order_no + orderDetailBean.orderNo}'
+                            android:text='@{orderDetailBean==null?(@string/order_no):(@string/order_no + orderDetailBean.orderNo)}'
                             android:textColor="@color/grayText"
                             android:textSize="@dimen/textsize_sixteen" />
                     </RelativeLayout>
@@ -101,7 +101,7 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/margin_five"
                             android:paddingTop="@dimen/margin_five"
-                            android:text='@{@string/receiver_name + orderDetailBean.sendReceiver}'
+                            android:text='@{orderDetailBean==null?(@string/receiver_name):(@string/receiver_name + orderDetailBean.sendReceiver)}'
                             android:textColor="@color/blackText"
                             android:textSize="@dimen/textsize_sixteen" />
 
@@ -111,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/margin_five"
                             android:paddingTop="@dimen/margin_five"
-                            android:text='@{@string/receive_address + orderDetailBean.sendAddr}'
+                            android:text='@{orderDetailBean==null?(@string/receive_address):(@string/receive_address + orderDetailBean.sendAddr)}'
                             android:textColor="@color/blackText"
                             android:textSize="@dimen/textsize_sixteen" />
 
@@ -121,7 +121,7 @@
                             android:layout_height="wrap_content"
                             android:paddingBottom="@dimen/margin_five"
                             android:paddingTop="@dimen/margin_five"
-                            android:text='@{@string/delivery_time + orderDetailBean.sendTimeName}'
+                            android:text='@{orderDetailBean==null?(@string/delivery_time):(@string/delivery_time + orderDetailBean.sendTimeName)}'
                             android:textColor="@color/blackText"
                             android:textSize="@dimen/textsize_sixteen" />
                     </LinearLayout>
