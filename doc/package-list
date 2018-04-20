@@ -1,0 +1,15 @@
+com.base
+com.base.application
+com.base.bean
+com.base.net
+com.base.ui
+com.base.util.app
+com.base.util.bezier
+com.base.util.bitmap
+com.base.util.common
+com.base.util.hint
+com.base.util.img
+com.base.util.layoutmanager
+com.base.util.pinyin
+com.base.util.refresh
+com.base.view
