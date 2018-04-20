@@ -1,7 +1,7 @@
 # BaseProject使用手册
 Android项目基础工具 --- baselibs
 # github地址
-https://github.com/fanson1/BaseProject
+https://github.com/fanson1/FhyProject
 # 注释文档
 doc
 # android studio中gradle引用方式：
@@ -14,10 +14,10 @@ doc
 ### 	}
 ## Step 2. Add the dependency
 ### 	dependencies {
-### 	        compile 'com.github.fanson1:BaseProject:v20180411'
+### 	        compile 'com.github.fanson1:FhyProject:1.0.0'
 ### 	}
 ## 其他方式参照：
-https://jitpack.io/#fanson1/BaseProject/1.0.0
+https://jitpack.io/#fanson1/FhyProject/
 # 目录
 ## 一、application：
 Application抽取

@@ -10,6 +10,7 @@ import com.base.mvvm.databinding.ActivityOrderDetailBinding;
 import com.base.mvvm.databinding.CommodityItemLayoutBinding;
 import com.base.mvvm.databinding.OrderListItemLayoutBinding;
 import com.base.mvvm.feature.main.order.OrderDetailBean;
+import com.base.mvvm.feature.main.order.util.OrderUtil;
 import com.base.util.app.IntentUtil;
 import com.base.util.common.StringUtils;
 
@@ -17,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 描述: 订单列表相关处理工具
+ * 描述: 订单详情相关处理工具
  *
  * @author : <a href="mailto:fanhuayong@yinli56.com">Fanhy</a>
  * @version : Ver 1.0
@@ -42,15 +43,8 @@ public class OrderDetailHandler {
      * @return
      */
     public String getOrderDeliveryTimeStr() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        OrderDetailBean orderDetailBean = binding.getOrderDetailBean();
-        if(orderDetailBean == null) {
-            return "";
-        }
-
-        String sendDate = format.format(new Date(orderDetailBean.sendDate));
-        String sendTimeName = orderDetailBean.sendTimeName;
-        return sendDate + " " + sendTimeName;
+        return OrderUtil.getDeliveryTimeStr(binding.getOrderDetailBean().sendDate,
+                binding.getOrderDetailBean().sendTimeName + "");
     }
 
     /**
@@ -70,29 +64,12 @@ public class OrderDetailHandler {
     }
 
     /**
-     * 跳转到订单详情
-     *
-     * @param view
-     */
-    public void toOrderDetail(View view) {
-        Toast.makeText(view.getContext(), "去订单详情", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent();
-        intent.setClass(view.getContext(), OrderDetailActivity.class);
-        intent.putExtra("orderNo", binding.getOrderDetailBean().orderNo);
-        IntentUtil.openActivity(view.getContext(), intent);
-    }
-
-    /**
      * 拨打电话
      *
      * @param view
      */
     public void callPhone(View view) {
-        Toast.makeText(view.getContext(), "打电话", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        Uri data = Uri.parse("tel:" + binding.getOrderDetailBean().sendPhone);
-        intent.setData(data);
-        IntentUtil.openActivity(view.getContext(), intent);
+        OrderUtil.callPhone(view, binding.getOrderDetailBean().sendPhone + "");
     }
 
     /**

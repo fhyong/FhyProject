@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.base.mvvm.databinding.OrderListItemLayoutBinding;
 import com.base.mvvm.feature.main.order.detail.OrderDetailActivity;
+import com.base.mvvm.feature.main.order.util.OrderUtil;
 import com.base.util.app.IntentUtil;
 
 import java.text.SimpleDateFormat;
@@ -33,8 +34,8 @@ public class OrderListHandler {
      * @return
      */
     public String getDeliveryTimeStr() {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
-        return format.format(new Date(itemBinding.getOrderBean().sendDate)) + " " + itemBinding.getOrderBean().sendTimeName;
+        return OrderUtil.getDeliveryTimeStr(itemBinding.getOrderBean().sendDate,
+                itemBinding.getOrderBean().sendTimeName + "");
     }
 
     /**
@@ -56,11 +57,7 @@ public class OrderListHandler {
      * @param view
      */
     public void callPhone(View view) {
-        Toast.makeText(view.getContext(), "打电话", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        Uri data = Uri.parse("tel:" + itemBinding.getOrderBean().sendPhone);
-        intent.setData(data);
-        IntentUtil.openActivity(view.getContext(), intent);
+        OrderUtil.callPhone(view, itemBinding.getOrderBean().sendPhone + "");
     }
 
     /**

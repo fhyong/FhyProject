@@ -16,6 +16,14 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 描述: 订单详情View层实现
+ *
+ * @author : <a href="mailto:fanhuayong@yinli56.com">Fanhy</a>
+ * @version : Ver 1.0
+ * @date : 2018-04-19 10:24
+ */
+
 public class OrderDetailActivity extends AppCompatActivity {
     private ActivityOrderDetailBinding binding;
     private OrderDetailViewModel viewModel;

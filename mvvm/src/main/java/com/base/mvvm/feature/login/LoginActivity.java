@@ -8,6 +8,14 @@ import com.base.mvvm.R;
 import com.base.mvvm.bean.UserBean;
 import com.base.mvvm.util.PrefrenceUtil;
 
+/**
+ * 描述: 登陆模块View层实现
+ *
+ * @author : <a href="mailto:fanhuayong@yinli56.com">Fanhy</a>
+ * @version : Ver 1.0
+ * @date : 2018-04-18 16:59
+ */
+
 public class LoginActivity extends AppCompatActivity {
     private com.base.mvvm.databinding.ActivityLoginBinding binding;
     @Override
