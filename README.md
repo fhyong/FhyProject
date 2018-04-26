@@ -103,7 +103,6 @@ apply from: "config.gradle"
 
 # 提交规范
 
-```
 * **[func] do sth**：功能开发
 * **[fixbug] #xx# do sth**：Bug 修改，#号内为 issue 编号
 * **[docs] do sth**：文档
@@ -111,13 +110,11 @@ apply from: "config.gradle"
 * **[test] do sth**：添加测试代码
 * **[optimize] do sth**: 优化部分代码
 * **[style] do sth**: 格式化上的格式化、删除空白行等，无关功能
-```
 
 # 注释文档
 doc
 
 # android studio中gradle引用方式：
-```
 ## Step 1. Add it in your root build.gradle at the end of repositories:
 ### 	allprojects {
 ### 		repositories {
@@ -131,7 +128,6 @@ doc
 ### 	}
 ## 其他方式参照：
 https://jitpack.io/#fanson1/FhyProject/
-```
 
 # 目录
 ## 一、application：
