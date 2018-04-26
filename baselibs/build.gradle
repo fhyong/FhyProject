@@ -5,16 +5,16 @@ group='com.github.fanson1'
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "27.0.2"
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     dataBinding {
         enabled = true
     }
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 20180410
         versionName "1.0.0"
 
@@ -55,41 +55,46 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+
+    // Test
+    compile rootProject.ext.dependencies["junit"]
+    androidTestCompile(rootProject.ext.dependencies["espresso"], {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
-    //RecyclerView
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    //RecyclerAdapter框架BRVAH
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    // V7包
+    compile rootProject.ext.dependencies["appcompat-v7"]
+    // RecyclerView
+    compile rootProject.ext.dependencies["recyclerview-v7"]
+    // RecyclerAdapter框架BRVAH
+    compile rootProject.ext.dependencies["brvadapter"]
+
     // Android 支持 Rxjava
     // 此处一定要注意使用RxJava2的版本
-    compile 'io.reactivex.rxjava2:rxjava:2.0.1'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile rootProject.ext.dependencies["rxjava"]
+    compile rootProject.ext.dependencies["rxandroid"]
+    compile rootProject.ext.dependencies["rxbinding"]
     // Android 支持 Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile rootProject.ext.dependencies["retrofit"]
     // 衔接 Retrofit & RxJava
     // 此处一定要注意使用RxJava2的版本
-    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
-    // 支持Gson解析
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.google.code.gson:gson:2.4'
+    compile rootProject.ext.dependencies["rradapter"]
     // RxPermissions
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4'
+    compile rootProject.ext.dependencies["rxpermissions"]
+    // 支持Gson解析
+    compile rootProject.ext.dependencies["converter-gson"]
+    compile rootProject.ext.dependencies["gson"]
     // 引用material-dialogs
-    compile 'com.afollestad.material-dialogs:commons:0.9.4.3'
-    compile 'com.afollestad.material-dialogs:core:0.9.4.3'
+    compile rootProject.ext.dependencies["md-dialog-commons"]
+    compile rootProject.ext.dependencies["md-dialog-core"]
     // 图片缓存
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    //将android 崩溃日志写入到sd卡得工具类
-    compile 'com.dreamlive.cn.clog:ClogLibrary:0.0.1'
+    compile rootProject.ext.dependencies["glide"]
+    // 将android 崩溃日志写入到sd卡得工具类
+    compile rootProject.ext.dependencies["clog"]
     // eventbus
-    compile 'org.greenrobot:eventbus:3.0.0'
+    compile rootProject.ext.dependencies["eventbus"]
     // 下拉刷新框架
-    compile 'com.lcodecorex:tkrefreshlayout:1.0.6'
+    compile rootProject.ext.dependencies["tkrefreshlayout"]
     // 文字转拼音
     compile files('libs/pinyin4j-2.5.0.jar')
 }
