@@ -27,6 +27,7 @@ ext {
             // Test
             "junit"               : "junit:junit:4.12",
             "espresso"            : "com.android.support.test.espresso:espresso-core:2.2.2",
+            "espresso-idling"     : "com.android.support.test.espresso:espresso-idling-resource:2.2.2",
 
             // Json
             "gson"                : "com.google.code.gson:gson:2.4",
@@ -55,8 +56,8 @@ ext {
             "greendao-generator"  : "org.greenrobot:greendao-generator:3.0.0",
 
             // MD lib
-            "md-dialog-commons"  : "com.afollestad.material-dialogs:commons:0.9.4.3",
-            "md-dialog-core"  : "com.afollestad.material-dialogs:core:0.9.4.3",
+            "md-dialog-commons"   : "com.afollestad.material-dialogs:commons:0.9.4.3",
+            "md-dialog-core"      : "com.afollestad.material-dialogs:core:0.9.4.3",
 
             // Other
             "nineoldandroids"     : "com.nineoldandroids:library:2.4.0",

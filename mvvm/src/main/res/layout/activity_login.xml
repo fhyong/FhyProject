@@ -30,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:visibility="gone"
                 android:text='@{baseBean != null ? baseBean.result + @string/user_welcome_hint : ""}'
                 />
         </RelativeLayout>

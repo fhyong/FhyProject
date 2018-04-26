@@ -36,4 +36,11 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile rootProject.ext.dependencies["constraint"]
     compile project(':baselibs')
+
+    // Test
+    compile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["espresso-idling"]
+    androidTestCompile(rootProject.ext.dependencies["espresso"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

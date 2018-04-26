@@ -2,6 +2,7 @@ package com.base.mvvm.feature.login;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import com.base.mvvm.bean.BaseBean;
 import com.base.mvvm.bean.UserBean;
@@ -41,12 +42,14 @@ public class LoginViewModel {
             } else {// 清除用户信息
                 PrefrenceUtil.clearUserBean();
             }
+            binding.tvUserWelcome.setVisibility(View.VISIBLE);
             Context context = binding.tvUserWelcome.getContext();
             context.startActivity(new Intent(context, OrderListActivity.class));
         } else {// 登陆失败
             binding.edtUserName.setText("");
             binding.edtUserPwd.setText("");
             binding.tvUserWelcome.setText("");
+            binding.tvUserWelcome.setVisibility(View.GONE);
         }
     }
 }
