@@ -1,5 +1,6 @@
 package com.base.mvvm.feature.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -7,10 +8,8 @@ import android.view.View;
 import com.base.mvvm.bean.BaseBean;
 import com.base.mvvm.bean.UserBean;
 import com.base.mvvm.databinding.ActivityLoginBinding;
-import com.base.mvvm.feature.main.order.detail.OrderDetailActivity;
 import com.base.mvvm.feature.main.order.list.OrderListActivity;
 import com.base.mvvm.util.PrefrenceUtil;
-import com.base.util.app.AppManager;
 
 /**
  * 描述: 登陆模块ViewModel实现
@@ -24,20 +23,21 @@ public class LoginViewModel {
     private LoginModel model;
     private ActivityLoginBinding binding;
 
-    public LoginViewModel(ActivityLoginBinding binding) {
+    public LoginViewModel(Activity activity, ActivityLoginBinding binding) {
         this.binding = binding;
-        this.model = new LoginModel(this);
+        this.model = new LoginModel(activity, this);
     }
 
     public void login(UserBean userBean) {
+        LoginActivity.sIdlingResource.increment();//App 开始进入忙碌状态 ，等待通知
         model.login(userBean);
     }
 
     public void setLoginResult(BaseBean<Integer> baseBean) {
-        if(baseBean.status.equals("success")) {// 登陆成功
+        if (baseBean.status.equals("success")) {// 登陆成功
             binding.setBaseBean(baseBean);
             UserBean userBean = binding.getUserBean();
-            if(userBean.isRecordPwd) {// 保存用户信息
+            if (userBean.isRecordPwd) {// 保存用户信息
                 PrefrenceUtil.setUserBean(userBean);
             } else {// 清除用户信息
                 PrefrenceUtil.clearUserBean();
@@ -51,5 +51,6 @@ public class LoginViewModel {
             binding.tvUserWelcome.setText("");
             binding.tvUserWelcome.setVisibility(View.GONE);
         }
+        LoginActivity.sIdlingResource.decrement();//加载完毕后，将App设置成空闲状态
     }
 }

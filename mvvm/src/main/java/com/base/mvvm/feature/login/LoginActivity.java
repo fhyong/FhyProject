@@ -2,10 +2,12 @@ package com.base.mvvm.feature.login;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.test.espresso.idling.CountingIdlingResource;
 import android.support.v7.app.AppCompatActivity;
 
 import com.base.mvvm.R;
 import com.base.mvvm.bean.UserBean;
+import com.base.mvvm.databinding.ActivityLoginBinding;
 import com.base.mvvm.util.PrefrenceUtil;
 
 /**
@@ -17,13 +19,14 @@ import com.base.mvvm.util.PrefrenceUtil;
  */
 
 public class LoginActivity extends AppCompatActivity {
-    private com.base.mvvm.databinding.ActivityLoginBinding binding;
+    private ActivityLoginBinding binding;
+    public static CountingIdlingResource sIdlingResource=new CountingIdlingResource("LoginActivity");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         CheckUserInfoUtil.checkUserNameAndUserPwdIsInvalidate(binding);// RxJava联合判断
-        binding.setClickHandler(new LoginHandler(binding));// 绑定监听
+        binding.setClickHandler(new LoginHandler(this, binding));// 绑定监听
         UserBean userBean = PrefrenceUtil.getUserBean();
         if(userBean != null) {// 是否记住密码
             binding.cbIsRecordPwd.setChecked(userBean.isRecordPwd);

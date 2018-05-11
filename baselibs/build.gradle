@@ -95,6 +95,8 @@ dependencies {
     compile rootProject.ext.dependencies["eventbus"]
     // 下拉刷新框架
     compile rootProject.ext.dependencies["tkrefreshlayout"]
+    // 进度对话框
+    compile rootProject.ext.dependencies["loading-avi"]
     // 文字转拼音
     compile files('libs/pinyin4j-2.5.0.jar')
 }

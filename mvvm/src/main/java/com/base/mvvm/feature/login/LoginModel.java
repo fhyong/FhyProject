@@ -1,8 +1,12 @@
 package com.base.mvvm.feature.login;
 
+import android.app.Activity;
+
 import com.base.mvvm.bean.BaseBean;
 import com.base.mvvm.bean.UserBean;
 import com.base.mvvm.net.ApiServiceFactory;
+import com.base.mvvm.net.BaseObserver;
+import com.base.mvvm.util.DialogUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
@@ -17,9 +21,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class LoginModel {
+    private Activity activity;
     private LoginViewModel viewModel;
 
-    public LoginModel(LoginViewModel viewModel) {
+    public LoginModel(Activity activity, LoginViewModel viewModel) {
+        this.activity = activity;
         this.viewModel = viewModel;
     }
 
@@ -29,9 +35,9 @@ public class LoginModel {
                 .appLogin(userBean.userName, userBean.userPwd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<BaseBean<Integer>>() {
+                .subscribe(new BaseObserver<BaseBean<Integer>>(activity, "") {
                     @Override
-                    public void accept(BaseBean<Integer> baseBean) throws Exception {
+                    public void callBack(BaseBean<Integer> baseBean) {
                         viewModel.setLoginResult(baseBean);
                     }
                 });

@@ -1,8 +1,10 @@
 package com.base.mvvm.feature.login;
 
+import android.app.Activity;
 import android.view.View;
 
 import com.base.mvvm.databinding.ActivityLoginBinding;
+import com.base.mvvm.util.DialogUtil;
 
 /**
  * 描述: 点击事件
@@ -16,9 +18,9 @@ public class LoginHandler {
     private ActivityLoginBinding binding;
     private LoginViewModel viewModel;
 
-    public LoginHandler(ActivityLoginBinding binding) {
+    public LoginHandler(Activity activity, ActivityLoginBinding binding) {
         this.binding = binding;
-        viewModel = new LoginViewModel(binding);
+        viewModel = new LoginViewModel(activity, binding);
     }
 
     public void loginDo(View view) {

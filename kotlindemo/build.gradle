@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
+
+    dataBinding {
+        enabled = true
+    }
+
+    // 解决DuplicateFileException问题
+    packagingOptions {
+        exclude 'META-INF/*'
+    }
+
+    defaultConfig {
+        applicationId "com.base.demo"
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+kapt {// 解决kotlin与databinding的冲突问题
+    generateStubs = true
+}
+
+dependencies {// 解决kotlin与databinding的冲突问题
+    //...
+    kapt "com.android.databinding:compiler:2.3.0"
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile rootProject.ext.dependencies["constraint"]
+    compile project(':baselibs')
+
+    // Test
+    compile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["espresso-idling"]
+    androidTestCompile(rootProject.ext.dependencies["espresso"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'com.android.support:design:26.+'
+}
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
+}

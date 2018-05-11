@@ -2,9 +2,11 @@ package com.base.mvvm.feature.main.order.list;
 
 import com.base.mvvm.R;
 import com.base.mvvm.bean.BaseBean;
+import com.base.mvvm.bean.UserBean;
 import com.base.mvvm.feature.main.order.OrderInfoBean;
 import com.base.mvvm.net.ApiServiceFactory;
 import com.base.mvvm.util.PrefrenceUtil;
+import com.base.util.common.StringUtils;
 
 import java.util.List;
 
@@ -28,9 +30,14 @@ public class OrderListModel {
     }
 
     public void getOrderList(String condition) {
+        UserBean user = PrefrenceUtil.getUserBean();
+        if(user == null) {
+            return;
+        }
+        String userName = user.userName;
         ApiServiceFactory
                 .getApiService()
-                .findDeliveryOrder(PrefrenceUtil.getUserBean().userName, condition)
+                .findDeliveryOrder(userName, condition)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseBean<List<OrderInfoBean>>>() {
@@ -42,9 +49,14 @@ public class OrderListModel {
     }
 
     public void confirmReceive(String orderNo, String inputCode) {
+        UserBean user = PrefrenceUtil.getUserBean();
+        if(user == null) {
+            return;
+        }
+        String userName = user.userName;
         ApiServiceFactory
                 .getApiService()
-                .confirmPickUp(orderNo, inputCode, PrefrenceUtil.getUserBean().userName)
+                .confirmPickUp(orderNo, inputCode, userName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BaseBean<Object>>() {
