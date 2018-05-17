@@ -1,7 +1,10 @@
 package com.base.demo.test.oop
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
+import kotlinx.android.parcel.Parcelize
 
 /**
  * 描述: 学生类
@@ -10,6 +13,7 @@ import android.view.View
  * @version : Ver 1.0
  * @date : 2018-05-10 11:23
  */
+
 class Student(pid: String, pName: String, age: Int, sex: Char) : Person(pid, pName, age,sex) {
 
     override fun jiaGui() {

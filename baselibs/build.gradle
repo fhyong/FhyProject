@@ -99,4 +99,6 @@ dependencies {
     compile rootProject.ext.dependencies["loading-avi"]
     // 文字转拼音
     compile files('libs/pinyin4j-2.5.0.jar')
+    // 状态工具
+    compile rootProject.ext.dependencies["statusbarutil"]
 }

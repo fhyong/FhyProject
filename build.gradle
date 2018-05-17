@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 buildscript {
-
+    ext.kotlin_version = '1.2.41'
     repositories {
         maven { url 'https://maven.google.com' }
         jcenter()
@@ -9,6 +9,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'org.jetbrains.kotlin:kotlin-stdlib:0.9.66'// Kotlin标准库，提供apply,lazy,let,repeat,run,to,with等高阶函数
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

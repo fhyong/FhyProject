@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
-apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android'// Kotlin对Android开发的支持插件
+apply plugin: 'kotlin-android-extensions'// Kotlin扩展支持插件
+apply plugin: 'kotlin-kapt'  // add this line支持Kotlin的一套可插入式注解API插件
+
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -13,6 +16,14 @@ android {
     // 解决DuplicateFileException问题
     packagingOptions {
         exclude 'META-INF/*'
+    }
+
+    androidExtensions {// 打开实验模式，Kotlin扩展里的有些功能(如LayoutContainer )目前只支持试用
+        experimental = true
+    }
+
+    androidExtensions {// 默认使用HashMap缓存
+        defaultCacheImplementation = "HASH_MAP" // also SPARSE_ARRAY, NONE
     }
 
     defaultConfig {
@@ -60,6 +71,9 @@ repositories {
 }
 dependencies {
     compile 'com.android.support:design:26.+'
+}
+dependencies {
+    compile 'com.android.support.constraint:constraint-layout:+'
 }
 dependencies {
     compile 'com.android.support.constraint:constraint-layout:+'

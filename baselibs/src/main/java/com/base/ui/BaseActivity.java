@@ -3,6 +3,7 @@ package com.base.ui;
 import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +12,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.base.R;
 import com.base.util.common.DisplayUtil;
 import com.base.util.app.AppManager;
+import com.jaeger.library.StatusBarUtil;
 
 /**
  * 描述: Activity基类
@@ -30,13 +33,15 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = this;// 保存Activity实例
-        binding = DataBindingUtil.setContentView(this, getContentViewId());// 获取DataBinding对象
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         //如果存在actionBar，就隐藏
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();// 隐藏ActionBar
         }
+        StatusBarUtil.setColor(this, getStatusColor(), 50);
+        binding = DataBindingUtil.setContentView(this, getContentViewId());// 获取DataBinding对象
         AppManager.getInstance().addActivity(this);// 将Activity实例添加到Activity栈中
-        setTranslucentStatus();// 设置沉浸式状态栏
+        //setTranslucentStatus();// 设置沉浸式状态栏
 
         beforeInitView();// 初始化View之前的操作
         initView();// 初始化View操作
@@ -86,7 +91,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            setViewPaddingTopByStatusHeight();
+            //setViewPaddingTopByStatusHeight();
         }
     }
 
@@ -209,5 +214,21 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         AppManager.getInstance().remove(this);
         super.onDestroy();
+    }
+
+    /**
+     * 状态栏默认颜色
+     */
+    private final int getDefaultTitleBarColor() {
+        return Color.GRAY;
+    }
+
+    /**
+     * 状态栏颜色：默认是指定配色，如果需要不同的状态栏颜色，可在子类中覆写该方法
+     *
+     * @return
+     */
+    protected int getStatusColor() {
+        return getDefaultTitleBarColor();
     }
 }

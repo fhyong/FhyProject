@@ -58,6 +58,7 @@ ext {
             // MD lib
             "md-dialog-commons"   : "com.afollestad.material-dialogs:commons:0.9.4.3",
             "md-dialog-core"      : "com.afollestad.material-dialogs:core:0.9.4.3",
+            "statusbarutil"       : "com.jaeger.statusbarutil:library:1.4.0",
 
             // Other
             "nineoldandroids"     : "com.nineoldandroids:library:2.4.0",

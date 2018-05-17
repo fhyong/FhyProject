@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/baselibs" />
+            <option value="$PROJECT_DIR$/kotlindemo" />
             <option value="$PROJECT_DIR$/mvvm" />
           </set>
         </option>
